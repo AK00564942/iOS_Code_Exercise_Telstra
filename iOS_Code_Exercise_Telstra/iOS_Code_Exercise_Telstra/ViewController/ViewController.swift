@@ -10,17 +10,19 @@ import UIKit
 
 class ViewController: UIViewController{
 
+    
      let tableView = UITableView()
      var safeArea: UILayoutGuide!
-    
-   var characters = ["Link", "Zelda", "Ganondorf", "Midna"]
-    
+    let jsonList = ["Anuj","Anuj1","Anuj2","Anuj3"]
+        
     override func viewDidLoad() {
-        view.backgroundColor = .red
+        self.title = "About Canada"
+        view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
         tableView.dataSource = self
-        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier:"cellid")
         setupView()
+        detailsAPI.shared.fetchDescAPI()
     }
     
     //MARK:- SetUp View
@@ -36,11 +38,13 @@ class ViewController: UIViewController{
 //MARK:- UITableViewDataSource
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 7
+    return jsonList.count
   }
+    
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
-    cell.textLabel?.text = "Hi Anuj "
+    let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
+    let list = jsonList[indexPath.row]
+    cell.textLabel?.text = list
     return cell
 }
 }
