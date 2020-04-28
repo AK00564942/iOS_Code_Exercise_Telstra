@@ -8,37 +8,49 @@
 
 import Foundation
 
-final class detailsAPI
-{
-    static let shared = detailsAPI()
+
+final class AmiiboAPI {
     
-    func fetchDescAPI() {
-        let session = URLSession.shared
-        let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
-        let task = session.dataTask(with: url, completionHandler: { data, response, error in
-            //print(response?.mimeType!)
-            let str = String(decoding: data!, as: UTF8.self)
-            //print(str)
-            
-            let jsonData = str.data(using: .utf8)!
-            let json = try! JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
-            print(json)
-            
-            
-        })
-        task.resume()
+
+   static let shared = AmiiboAPI()
+    
+    func fetchAmiiboList(onCompletion: @escaping ([Amiibo]) -> ()) {
+    let urlString =  "http://www.amiiboapi.com/api/amiibo"
+    let url = URL(string:urlString)!
+    let task = URLSession.shared.dataTask(with:url) {(data,resp,error) in
+    guard let data = data else {
+    print("data was nil")
+    return
     }
+        guard let amiiboList = try?JSONDecoder().decode(Desc.self,from:data) else {
+            print("Could not decode json")
+            return
+    }
+        onCompletion(amiiboList.amiibo)
+  }
+        task.resume()
+}
+}
+    
+    
+    
+    
+struct Desc: Codable
+{
+    let amiibo : [Amiibo]
+}
         
-struct desc:Codable
+struct Amiibo: Codable
 {
-       let title:[subdesc]
+    let amiiboSeries:String?
+    let character:String?
+    let gameSeries:String?
+    let head:String?
+    let image:String?
+    let name:String?
+
+    let tail:String?
+    let type:String?
+    
 }
 
-struct subdesc:Codable
-{
-       let subtitle:String?
-       let description:String?
-       let imageHref:String?
-}
-
-}

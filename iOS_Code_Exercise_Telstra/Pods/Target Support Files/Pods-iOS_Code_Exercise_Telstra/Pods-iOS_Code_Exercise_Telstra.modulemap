@@ -1,6 +1,0 @@
-framework module Pods_iOS_Code_Exercise_Telstra {
-  umbrella header "Pods-iOS_Code_Exercise_Telstra-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -9,25 +9,30 @@
 import UIKit
 
 class ViewController: UIViewController{
-
     
      let tableView = UITableView()
      var safeArea: UILayoutGuide!
-    let jsonList = ["Anuj","Anuj1","Anuj2","Anuj3"]
+     var amiiboList = [Amiibo]()
         
     override func viewDidLoad() {
-        self.title = "About Canada"
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
-        tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier:"cellid")
+        let anonymousFunction = {(fetchedAmiiboList:[Amiibo]) in
+            DispatchQueue.main.async {
+                self.amiiboList = fetchedAmiiboList
+                self.tableView.reloadData()
+            }
+            
+        }
         setupView()
-        detailsAPI.shared.fetchDescAPI()
+        AmiiboAPI.shared.fetchAmiiboList(onCompletion:anonymousFunction)
     }
     
     //MARK:- SetUp View
     func setupView() {
         view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.register(AmiibiCell.self, forCellReuseIdentifier:"cellid")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -38,13 +43,23 @@ class ViewController: UIViewController{
 //MARK:- UITableViewDataSource
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return jsonList.count
+    return amiiboList.count
   }
     
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
-    let list = jsonList[indexPath.row]
-    cell.textLabel?.text = list
+    let list = amiiboList[indexPath.row]
+    
+    guard let amiibocell = cell as? AmiibiCell else
+    {
+        return cell
+    }
+    amiibocell.nameLabel.text = list.name
+    amiibocell.nameLabel1.text = list.gameSeries
+    if let url =  URL(string:list.image!)
+    {
+        amiibocell.imageIV.loadImage(from:url)
+    }
     return cell
 }
 }
