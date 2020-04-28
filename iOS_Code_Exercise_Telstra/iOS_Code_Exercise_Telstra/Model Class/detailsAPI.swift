@@ -13,26 +13,22 @@ final class detailsAPI
     static let shared = detailsAPI()
     
     func fetchDescAPI() {
-        let urlString = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
-        let url = URL(string:urlString)!
-        var request = URLRequest(url:url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with:request) {(data,resp,error) in
-        guard let data = data else {
-            print("data was nil")
-            return
-         }
-            guard let ListItem = try? JSONDecoder().decode(desc.self, from:data) else {
-                print("could not decode json")
-                return
-            }
-            print(ListItem.title)
-        }
+        let session = URLSession.shared
+        let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
+        let task = session.dataTask(with: url, completionHandler: { data, response, error in
+            //print(response?.mimeType!)
+            let str = String(decoding: data!, as: UTF8.self)
+            //print(str)
+            
+            let jsonData = str.data(using: .utf8)!
+            let json = try! JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
+            print(json)
+            
+            
+        })
         task.resume()
-        
     }
-    
-       
+        
 struct desc:Codable
 {
        let title:[subdesc]
