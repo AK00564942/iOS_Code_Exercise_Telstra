@@ -15,6 +15,9 @@ class ViewController: UIViewController{
      var amiiboList = [Amiibo]()
         
     override func viewDidLoad() {
+        self.title = "AMIBO"
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
         let anonymousFunction = {(fetchedAmiiboList:[Amiibo]) in
@@ -32,6 +35,8 @@ class ViewController: UIViewController{
     func setupView() {
         view.addSubview(tableView)
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(AmiibiCell.self, forCellReuseIdentifier:"cellid")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true

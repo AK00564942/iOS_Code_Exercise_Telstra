@@ -42,21 +42,26 @@ class AmiibiCell:UITableViewCell {
     }
     func setupNameLabel()
     {
-        addSubview(nameLabel)
+        let marginGuide = contentView.layoutMarginsGuide
+        contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.leadingAnchor.constraint(equalTo:imageIV.trailingAnchor,constant: 5).isActive = true
-        nameLabel.topAnchor.constraint(equalTo:topAnchor,constant: 5).isActive = true
-        nameLabel.font = UIFont(name:"Verdana-Bold", size:16)
-        
+        nameLabel.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor,constant: 5).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        nameLabel.font = UIFont(name:"Verdana-Bold", size:14)
+        nameLabel.numberOfLines = 0
     }
     func setupNameLabel1()
     {
-        addSubview(nameLabel1)
-        nameLabel1.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel1.leadingAnchor.constraint(equalTo:nameLabel.leadingAnchor).isActive = true
-        nameLabel1.topAnchor.constraint(equalTo:nameLabel.bottomAnchor).isActive = true
-        nameLabel1.font = UIFont(name:"Verdana", size:14)
         
+        let marginGuide = contentView.layoutMarginsGuide
+               contentView.addSubview(nameLabel1)
+               nameLabel1.translatesAutoresizingMaskIntoConstraints = false
+               nameLabel1.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
+               nameLabel1.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
+               nameLabel1.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+               nameLabel1.font = UIFont(name:"Verdana", size:14)
+               nameLabel1.numberOfLines = 0
     }
 }
 

@@ -8,7 +8,8 @@
 
 import UIKit
 
- 
+ //MARK:- UIImageView Chache
+
 let imageCache = NSCache<AnyObject,AnyObject>()
 
 class CustomImageView:UIImageView
@@ -16,6 +17,9 @@ class CustomImageView:UIImageView
     var task:URLSessionDataTask!
     
     func loadImage(from url:URL)  {
+        
+   /*- UIImage Scrolling */
+        
          image =  nil
         if let task = task
         {

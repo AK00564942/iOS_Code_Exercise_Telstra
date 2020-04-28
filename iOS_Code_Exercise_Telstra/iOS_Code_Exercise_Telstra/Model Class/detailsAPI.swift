@@ -31,10 +31,6 @@ final class AmiiboAPI {
         task.resume()
 }
 }
-    
-    
-    
-    
 struct Desc: Codable
 {
     let amiibo : [Amiibo]
@@ -42,15 +38,8 @@ struct Desc: Codable
         
 struct Amiibo: Codable
 {
-    let amiiboSeries:String?
-    let character:String?
     let gameSeries:String?
-    let head:String?
     let image:String?
     let name:String?
-
-    let tail:String?
-    let type:String?
-    
 }
 
