@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF0CE68C2457425700A4A03D /* detailsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CE68B2457425700A4A03D /* detailsAPI.swift */; };
+		EF0CE68C2457425700A4A03D /* DetailsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CE68B2457425700A4A03D /* DetailsAPI.swift */; };
 		EF4988C32456B6D800491657 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4988C22456B6D800491657 /* AppDelegate.swift */; };
-		EF4988C72456B6D800491657 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4988C62456B6D800491657 /* ViewController.swift */; };
+		EF4988C72456B6D800491657 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4988C62456B6D800491657 /* DetailsViewController.swift */; };
 		EF4D851224588D1E008338A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4D851124588D1E008338A7 /* Assets.xcassets */; };
 		EF4D851624588F3F008338A7 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4D851524588F3F008338A7 /* CustomImageView.swift */; };
 		EF607AA124586E2B00421A36 /* CustomTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF607AA024586E2B00421A36 /* CustomTableviewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF0CE68B2457425700A4A03D /* detailsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailsAPI.swift; sourceTree = "<group>"; };
+		EF0CE68B2457425700A4A03D /* DetailsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAPI.swift; sourceTree = "<group>"; };
 		EF4988BF2456B6D800491657 /* iOS_Code_Exercise_Telstra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Code_Exercise_Telstra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4988C22456B6D800491657 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF4988C62456B6D800491657 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EF4988C62456B6D800491657 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		EF4988D02456B6DB00491657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF4D851124588D1E008338A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF4D851524588F3F008338A7 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		EF0CE68D24574EE400A4A03D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EF4988C62456B6D800491657 /* ViewController.swift */,
+				EF4988C62456B6D800491657 /* DetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -48,7 +48,7 @@
 		EF3796172456EA67006F1F8D /* Model Class */ = {
 			isa = PBXGroup;
 			children = (
-				EF0CE68B2457425700A4A03D /* detailsAPI.swift */,
+				EF0CE68B2457425700A4A03D /* DetailsAPI.swift */,
 			);
 			path = "Model Class";
 			sourceTree = "<group>";
@@ -160,9 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF0CE68C2457425700A4A03D /* detailsAPI.swift in Sources */,
+				EF0CE68C2457425700A4A03D /* DetailsAPI.swift in Sources */,
 				EF607AA124586E2B00421A36 /* CustomTableviewCell.swift in Sources */,
-				EF4988C72456B6D800491657 /* ViewController.swift in Sources */,
+				EF4988C72456B6D800491657 /* DetailsViewController.swift in Sources */,
 				EF4988C32456B6D800491657 /* AppDelegate.swift in Sources */,
 				EF4D851624588F3F008338A7 /* CustomImageView.swift in Sources */,
 			);

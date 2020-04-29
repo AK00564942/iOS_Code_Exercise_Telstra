@@ -11,8 +11,8 @@ import UIKit
 class AmiibiCell:UITableViewCell {
     var safeArea:UILayoutGuide!
     var imageIV = CustomImageView()
-    var nameLabel = UILabel()
-    var nameLabel1 = UILabel()
+    var titlelbl = UILabel()
+    var desclbl = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:style,reuseIdentifier:reuseIdentifier)
@@ -27,8 +27,8 @@ class AmiibiCell:UITableViewCell {
     {
         safeArea = layoutMarginsGuide
         setupImageView()
-        setupNameLabel()
-        setupNameLabel1()
+        setupTitlelbl()
+        setupDesclbl()
     }
     
     func setupImageView()
@@ -40,28 +40,28 @@ class AmiibiCell:UITableViewCell {
         imageIV.widthAnchor.constraint(equalToConstant:40).isActive = true
         imageIV.heightAnchor.constraint(equalToConstant:40).isActive = true
     }
-    func setupNameLabel()
+    func setupTitlelbl()
     {
         let marginGuide = contentView.layoutMarginsGuide
-        contentView.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor,constant: 5).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
-        nameLabel.font = UIFont(name:"Verdana-Bold", size:14)
-        nameLabel.numberOfLines = 0
+        contentView.addSubview(titlelbl)
+        titlelbl.translatesAutoresizingMaskIntoConstraints = false
+        titlelbl.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor,constant: 5).isActive = true
+        titlelbl.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
+        titlelbl.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        titlelbl.font = UIFont(name:"Verdana-Bold", size:14)
+        titlelbl.numberOfLines = 0
     }
-    func setupNameLabel1()
+    func setupDesclbl()
     {
         
         let marginGuide = contentView.layoutMarginsGuide
-               contentView.addSubview(nameLabel1)
-               nameLabel1.translatesAutoresizingMaskIntoConstraints = false
-               nameLabel1.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
-               nameLabel1.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
-               nameLabel1.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
-               nameLabel1.font = UIFont(name:"Verdana", size:14)
-               nameLabel1.numberOfLines = 0
+               contentView.addSubview(desclbl)
+               desclbl.translatesAutoresizingMaskIntoConstraints = false
+               desclbl.leadingAnchor.constraint(equalTo: titlelbl.leadingAnchor).isActive = true
+               desclbl.topAnchor.constraint(equalTo: titlelbl.bottomAnchor).isActive = true
+               desclbl.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+               desclbl.font = UIFont(name:"Verdana", size:14)
+               desclbl.numberOfLines = 0
     }
 }
 

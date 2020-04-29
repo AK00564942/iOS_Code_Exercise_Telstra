@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DetailsViewController.swift
 //  iOS_Code_Exercise_Telstra
 //
 //  Created by ANUJ KUMAR on 27/04/20.
@@ -8,27 +8,33 @@
 
 import UIKit
 
-class ViewController: UIViewController{
+class DetailsViewController: UIViewController{
     
      let tableView = UITableView()
      var safeArea: UILayoutGuide!
-     var amiiboList = [Amiibo]()
+     var amiiboList = [Rows]()
+     var Header = String()
         
     override func viewDidLoad() {
-        self.title = "AMIBO"
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
         view.backgroundColor = .white
         safeArea = view.layoutMarginsGuide
-        let anonymousFunction = {(fetchedAmiiboList:[Amiibo]) in
-            DispatchQueue.main.async {
-                self.amiiboList = fetchedAmiiboList
-                self.tableView.reloadData()
-            }
-            
-        }
         setupView()
-        AmiiboAPI.shared.fetchAmiiboList(onCompletion:anonymousFunction)
+        Service.shared.fetchDescAPI { (status, data) in
+                if status {
+                    DispatchQueue.main.async {
+                        self.amiiboList = data.rows
+                        self.title = data.title!
+                        print(self.Header)
+                       self.tableView.reloadData()
+                }
+                  
+                }
+
+            }
+      
     }
     
     //MARK:- SetUp View
@@ -46,7 +52,7 @@ class ViewController: UIViewController{
       }
     }
 //MARK:- UITableViewDataSource
-extension ViewController: UITableViewDataSource {
+extension DetailsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return amiiboList.count
   }
@@ -59,12 +65,16 @@ extension ViewController: UITableViewDataSource {
     {
         return cell
     }
-    amiibocell.nameLabel.text = list.name
-    amiibocell.nameLabel1.text = list.gameSeries
-    if let url =  URL(string:list.image!)
+    amiibocell.titlelbl.text = list.title
+    amiibocell.desclbl.text = list.description
+    if let imageUrl = list.imageHref
     {
-        amiibocell.imageIV.loadImage(from:url)
+        if let url =  URL(string:imageUrl)
+        {
+            amiibocell.imageIV.loadImage(from:url)
+        }
     }
+    
     return cell
 }
 }
