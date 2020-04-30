@@ -9,16 +9,14 @@
 import Foundation
 
 // This model used to data to pass in ViewModel
-
 struct List:Codable
 {
     let title:String?
     var rows:[Rows]
 }
-
 struct Rows:Codable
 {
-       let title:String?
-       let description:String?
-       let imageHref:String?
+    let title:String?
+    let description:String?
+    let imageHref:String?
 }

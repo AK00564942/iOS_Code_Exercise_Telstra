@@ -21,22 +21,18 @@ class DetailsTableViewCell:UITableViewCell {
         super.init(style:style,reuseIdentifier:reuseIdentifier)
         setupView()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
    // TO displays View.
-    
-    func setupView()
+     func setupView()
     {
         safeArea = layoutMarginsGuide
         setupImageView()
         setupTitlelbl()
         setupDesclbl()
     }
-    
       // Show Image on View.
-    
     func setupImageView()
     {
         addSubview(imageIV)
@@ -46,9 +42,7 @@ class DetailsTableViewCell:UITableViewCell {
         imageIV.widthAnchor.constraint(equalToConstant:40).isActive = true
         imageIV.heightAnchor.constraint(equalToConstant:40).isActive = true
     }
-    
-     // Show Title on View.
-    
+    // Show Title on View.
     func setupTitlelbl()
     {
         let marginGuide = contentView.layoutMarginsGuide
@@ -60,9 +54,7 @@ class DetailsTableViewCell:UITableViewCell {
         titlelbl.font = UIFont(name:"Verdana-Bold", size:14)
         titlelbl.numberOfLines = 0
     }
-    
     // Show Description on View.
-    
     func setupDesclbl()
     {
         let marginGuide = contentView.layoutMarginsGuide

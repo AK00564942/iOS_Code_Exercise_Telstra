@@ -16,9 +16,9 @@ class DetailsViewModel
     var imageHref:String?
     
     // Dependency Injection
-    init(details:Rows) {
-        self.title = details.title
-        self.description = details.description
-        self.imageHref = details.imageHref
+  init(details:Rows) {
+    self.title = details.title
+    self.description = details.description
+    self.imageHref = details.imageHref
     }
 }

@@ -98,38 +98,6 @@
             endingLineNumber = "25"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4FFD22BF-229E-4042-B842-0F71EE8AAFBE - 3d100cb685ae96d8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "iOS_Code_Exercise_Telstra.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "iOS_Code_Exercise_Telstra"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anujkumar/Desktop/iOS_Code_Exercise_Telstra/iOS_Code_Exercise_Telstra/iOS_Code_Exercise_Telstra/iOS_Code_Exercise_Telstra/ViewController/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "1328">
-               </Location>
-               <Location
-                  uuid = "4FFD22BF-229E-4042-B842-0F71EE8AAFBE - ecaaeb3432bdaf68"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, iOS_Code_Exercise_Telstra.List) -&gt; () in iOS_Code_Exercise_Telstra.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "iOS_Code_Exercise_Telstra"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anujkumar/Desktop/iOS_Code_Exercise_Telstra/iOS_Code_Exercise_Telstra/iOS_Code_Exercise_Telstra/iOS_Code_Exercise_Telstra/ViewController/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "239">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
