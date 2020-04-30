@@ -26,11 +26,11 @@ class DetailsViewController: UIViewController{
     func fetchDataFromServer()
     {
        Service.shared.fetchDescAPI { (status, data) in
-       if status {
-                  self.arrDetailsModel = data.rows.map({return DetailsViewModel(details: $0)})
-                  DispatchQueue.main.async {
-                  self.tableView.reloadData()
-                  self.title = data.title
+    if status {
+        self.arrDetailsModel = data.rows.map({return DetailsViewModel(details: $0)})
+        DispatchQueue.main.async {
+        self.tableView.reloadData()
+        self.title = data.title
              }
            }
         }
@@ -61,21 +61,11 @@ extension DetailsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier:reuserIdetifer, for: indexPath)
     let detailslist = arrDetailsModel[indexPath.row]
-    
     guard let detailsViewCell = cell as? DetailsTableViewCell else
     {
         return cell
     }
-    detailsViewCell.titlelbl.text = detailslist.title
-    detailsViewCell.desclbl.text = detailslist.description
-    if let imageUrl = detailslist.imageHref
-    {
-        if let url =  URL(string:imageUrl)
-         {
-        /** call this method for image lazy loading */
-     detailsViewCell.imageIV.sd_setImage(with: url, placeholderImage:UIImage(contentsOfFile:"placeholder.png"))
-        }
-    }
+    detailsViewCell.configureCell(item:detailslist)
     return cell
 }
 }

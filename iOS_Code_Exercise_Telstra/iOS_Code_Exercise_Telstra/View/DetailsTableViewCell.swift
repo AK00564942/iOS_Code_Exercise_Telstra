@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 
 
 class DetailsTableViewCell:UITableViewCell {
@@ -15,6 +15,19 @@ class DetailsTableViewCell:UITableViewCell {
     var imageIV = UIImageView()
     var titlelbl = UILabel()
     var desclbl = UILabel()
+    
+    func configureCell(item:DetailsViewModel) {
+        titlelbl.text = item.title
+        desclbl.text = item.description
+        if let imageUrl = item.imageHref
+        {
+           if let url =  URL(string:imageUrl)
+             {
+            /** call this method for image lazy loading */
+         imageIV.sd_setImage(with: url, placeholderImage:UIImage(contentsOfFile:"placeholder.png"))
+         }
+        }
+      }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         // TO Customize the TableViewCell.
