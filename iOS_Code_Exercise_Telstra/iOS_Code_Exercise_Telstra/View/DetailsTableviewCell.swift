@@ -8,13 +8,16 @@
 
 import UIKit
 
-class AmiibiCell:UITableViewCell {
+
+
+class DetailsTableViewCell:UITableViewCell {
     var safeArea:UILayoutGuide!
-    var imageIV = CustomImageView()
+    var imageIV = UIImageView()
     var titlelbl = UILabel()
     var desclbl = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        // TO Customize the TableViewCell.
         super.init(style:style,reuseIdentifier:reuseIdentifier)
         setupView()
     }
@@ -22,7 +25,8 @@ class AmiibiCell:UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: -Setup
+   // TO displays View.
+    
     func setupView()
     {
         safeArea = layoutMarginsGuide
@@ -30,6 +34,8 @@ class AmiibiCell:UITableViewCell {
         setupTitlelbl()
         setupDesclbl()
     }
+    
+      // Show Image on View.
     
     func setupImageView()
     {
@@ -40,6 +46,9 @@ class AmiibiCell:UITableViewCell {
         imageIV.widthAnchor.constraint(equalToConstant:40).isActive = true
         imageIV.heightAnchor.constraint(equalToConstant:40).isActive = true
     }
+    
+     // Show Title on View.
+    
     func setupTitlelbl()
     {
         let marginGuide = contentView.layoutMarginsGuide
@@ -51,9 +60,11 @@ class AmiibiCell:UITableViewCell {
         titlelbl.font = UIFont(name:"Verdana-Bold", size:14)
         titlelbl.numberOfLines = 0
     }
+    
+    // Show Description on View.
+    
     func setupDesclbl()
     {
-        
         let marginGuide = contentView.layoutMarginsGuide
         contentView.addSubview(desclbl)
         desclbl.translatesAutoresizingMaskIntoConstraints = false

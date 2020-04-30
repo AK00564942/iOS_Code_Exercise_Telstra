@@ -8,25 +8,29 @@
 
 import Foundation
 
+/** fetch URL */
+let fetchApifromServer = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+
 final class Service
 {
     static let shared = Service()
+    /** Call this function to fetch data from server */
     func fetchDescAPI(completion: @escaping (Bool, List) -> Void) {
     let session = URLSession.shared
-    let url = URL(string:"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
+    let url = URL(string:fetchApifromServer)!
     let task = session.dataTask(with: url, completionHandler: { data, response, error in
-        let str = String(decoding: data!, as: UTF8.self)
-        let bar = str.folding(options: .diacriticInsensitive, locale: .current)
-        if let data1 = bar.data(using: String.Encoding.utf8) {
-            let list = try? JSONDecoder().decode(List.self, from: data1)
-            print("Main Title " + list!.title!)
-               for row:Rows in list!.rows {
+        let responseStr = String(decoding: data!, as: UTF8.self)
+        let bar = responseStr.folding(options: .diacriticInsensitive, locale: .current)
+        if let responseData = bar.data(using: String.Encoding.utf8) {
+            let responselist = try? JSONDecoder().decode(List.self, from: responseData)
+            print("Main Title " + responselist!.title!)
+               for row:Rows in responselist!.rows {
                   if let value = row.description
                 {
                     print("Sub-Description :" + value)
                 }
             }
-            if let allData = list {
+            if let allData = responselist {
                 completion(true, allData)
             }
         }

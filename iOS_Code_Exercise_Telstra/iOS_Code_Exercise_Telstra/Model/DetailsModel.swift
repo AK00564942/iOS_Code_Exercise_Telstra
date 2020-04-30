@@ -8,6 +8,8 @@
 
 import Foundation
 
+// This model used to data to pass in ViewModel
+
 struct List:Codable
 {
     let title:String?
