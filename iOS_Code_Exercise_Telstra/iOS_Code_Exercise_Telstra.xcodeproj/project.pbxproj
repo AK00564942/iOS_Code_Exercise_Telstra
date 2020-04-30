@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF0CE68C2457425700A4A03D /* DetailsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CE68B2457425700A4A03D /* DetailsAPI.swift */; };
+		EF0CE68C2457425700A4A03D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CE68B2457425700A4A03D /* Service.swift */; };
 		EF4988C32456B6D800491657 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4988C22456B6D800491657 /* AppDelegate.swift */; };
 		EF4988C72456B6D800491657 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4988C62456B6D800491657 /* DetailsViewController.swift */; };
 		EF4D851224588D1E008338A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4D851124588D1E008338A7 /* Assets.xcassets */; };
 		EF4D851624588F3F008338A7 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4D851524588F3F008338A7 /* CustomImageView.swift */; };
-		EF607AA124586E2B00421A36 /* CustomTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF607AA024586E2B00421A36 /* CustomTableviewCell.swift */; };
+		EF607AA124586E2B00421A36 /* DetailsTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF607AA024586E2B00421A36 /* DetailsTableviewCell.swift */; };
+		EF7F75E2245A921A00FB819E /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F75E1245A921A00FB819E /* DetailsViewModel.swift */; };
+		EF7F75E4245A925A00FB819E /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F75E3245A925A00FB819E /* DetailsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF0CE68B2457425700A4A03D /* DetailsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAPI.swift; sourceTree = "<group>"; };
+		EF0CE68B2457425700A4A03D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		EF4988BF2456B6D800491657 /* iOS_Code_Exercise_Telstra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Code_Exercise_Telstra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4988C22456B6D800491657 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF4988C62456B6D800491657 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		EF4988D02456B6DB00491657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF4D851124588D1E008338A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF4D851524588F3F008338A7 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
-		EF607AA024586E2B00421A36 /* CustomTableviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableviewCell.swift; sourceTree = "<group>"; };
+		EF607AA024586E2B00421A36 /* DetailsTableviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableviewCell.swift; sourceTree = "<group>"; };
+		EF7F75E1245A921A00FB819E /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		EF7F75E3245A925A00FB819E /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,12 +49,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		EF3796172456EA67006F1F8D /* Model Class */ = {
+		EF3796172456EA67006F1F8D /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				EF0CE68B2457425700A4A03D /* DetailsAPI.swift */,
+				EF0CE68B2457425700A4A03D /* Service.swift */,
 			);
-			path = "Model Class";
+			path = Service;
 			sourceTree = "<group>";
 		};
 		EF4988B62456B6D800491657 = {
@@ -72,9 +76,11 @@
 		EF4988C12456B6D800491657 /* iOS_Code_Exercise_Telstra */ = {
 			isa = PBXGroup;
 			children = (
-				EF607A9F24586E0400421A36 /* CustomeClass */,
+				EF7F75E0245A91BC00FB819E /* Model */,
+				EF7F75DF245A919C00FB819E /* ViewModel */,
+				EF607A9F24586E0400421A36 /* View */,
 				EF0CE68D24574EE400A4A03D /* ViewController */,
-				EF3796172456EA67006F1F8D /* Model Class */,
+				EF3796172456EA67006F1F8D /* Service */,
 				EF4D851124588D1E008338A7 /* Assets.xcassets */,
 				EF4988C22456B6D800491657 /* AppDelegate.swift */,
 				EF4988D02456B6DB00491657 /* Info.plist */,
@@ -82,13 +88,29 @@
 			path = iOS_Code_Exercise_Telstra;
 			sourceTree = "<group>";
 		};
-		EF607A9F24586E0400421A36 /* CustomeClass */ = {
+		EF607A9F24586E0400421A36 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EF607AA024586E2B00421A36 /* CustomTableviewCell.swift */,
+				EF607AA024586E2B00421A36 /* DetailsTableviewCell.swift */,
 				EF4D851524588F3F008338A7 /* CustomImageView.swift */,
 			);
-			path = CustomeClass;
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF7F75DF245A919C00FB819E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EF7F75E1245A921A00FB819E /* DetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EF7F75E0245A91BC00FB819E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EF7F75E3245A925A00FB819E /* DetailsModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,11 +182,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF0CE68C2457425700A4A03D /* DetailsAPI.swift in Sources */,
-				EF607AA124586E2B00421A36 /* CustomTableviewCell.swift in Sources */,
+				EF0CE68C2457425700A4A03D /* Service.swift in Sources */,
+				EF607AA124586E2B00421A36 /* DetailsTableviewCell.swift in Sources */,
 				EF4988C72456B6D800491657 /* DetailsViewController.swift in Sources */,
 				EF4988C32456B6D800491657 /* AppDelegate.swift in Sources */,
+				EF7F75E4245A925A00FB819E /* DetailsModel.swift in Sources */,
 				EF4D851624588F3F008338A7 /* CustomImageView.swift in Sources */,
+				EF7F75E2245A921A00FB819E /* DetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

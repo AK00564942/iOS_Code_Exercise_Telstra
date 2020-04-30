@@ -55,13 +55,14 @@ class AmiibiCell:UITableViewCell {
     {
         
         let marginGuide = contentView.layoutMarginsGuide
-               contentView.addSubview(desclbl)
-               desclbl.translatesAutoresizingMaskIntoConstraints = false
-               desclbl.leadingAnchor.constraint(equalTo: titlelbl.leadingAnchor).isActive = true
-               desclbl.topAnchor.constraint(equalTo: titlelbl.bottomAnchor).isActive = true
-               desclbl.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
-               desclbl.font = UIFont(name:"Verdana", size:14)
-               desclbl.numberOfLines = 0
+        contentView.addSubview(desclbl)
+        desclbl.translatesAutoresizingMaskIntoConstraints = false
+        desclbl.leadingAnchor.constraint(equalTo: titlelbl.leadingAnchor).isActive = true
+        desclbl.topAnchor.constraint(equalTo: titlelbl.bottomAnchor).isActive = true
+        desclbl.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
+        desclbl.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        desclbl.font = UIFont(name:"Verdana", size:14)
+        desclbl.numberOfLines = 0
     }
 }
 

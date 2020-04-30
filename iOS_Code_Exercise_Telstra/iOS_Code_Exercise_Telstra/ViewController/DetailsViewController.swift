@@ -12,28 +12,23 @@ class DetailsViewController: UIViewController{
     
      let tableView = UITableView()
      var safeArea: UILayoutGuide!
-     var amiiboList = [Rows]()
-     var Header = String()
+     var arrDetailsModel = [DetailsViewModel]()
         
     override func viewDidLoad() {
-        
-        
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-        view.backgroundColor = .white
-        safeArea = view.layoutMarginsGuide
-        setupView()
-        Service.shared.fetchDescAPI { (status, data) in
-                if status {
-                    DispatchQueue.main.async {
-                        self.amiiboList = data.rows
-                        self.title = data.title!
-                        print(self.Header)
-                       self.tableView.reloadData()
-                }
-                  
-                }
-
-            }
+      navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+               view.backgroundColor = .white
+               safeArea = view.layoutMarginsGuide
+               setupView()
+               Service.shared.fetchDescAPI { (status, data) in
+               if status {
+                   self.arrDetailsModel = data.rows.map({return DetailsViewModel(details: $0)})
+                   
+                   DispatchQueue.main.async {
+                   self.tableView.reloadData()
+                   self.title = data.title
+                   }
+               }
+                   }
       
     }
     
@@ -54,12 +49,12 @@ class DetailsViewController: UIViewController{
 //MARK:- UITableViewDataSource
 extension DetailsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return amiiboList.count
+    return arrDetailsModel.count
   }
     
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
-    let list = amiiboList[indexPath.row]
+    let list = arrDetailsModel[indexPath.row]
     
     guard let amiibocell = cell as? AmiibiCell else
     {

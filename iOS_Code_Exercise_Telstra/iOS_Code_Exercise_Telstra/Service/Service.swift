@@ -34,15 +34,4 @@ final class Service
     task.resume()
 }
 }
-struct List:Codable
-{
-    let title:String?
-    var rows:[Rows]
-}
 
-struct Rows:Codable
-{
-       let title:String?
-       let description:String?
-       let imageHref:String?
-}
