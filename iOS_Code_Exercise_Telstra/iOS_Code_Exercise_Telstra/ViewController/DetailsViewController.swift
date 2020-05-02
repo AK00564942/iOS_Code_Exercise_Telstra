@@ -25,14 +25,12 @@ class DetailsViewController: UIViewController{
     }
     func fetchDataFromServer()
     {
-       Service.shared.fetchDescAPI { (status, data) in
-    if status {
+       Service.shared.fetchDescAPI { (data) in
         self.arrDetailsModel = data.rows.map({return DetailsViewModel(details: $0)})
         DispatchQueue.main.async {
         self.tableView.reloadData()
-        self.title = data.title
+            self.navigationItem.title = data.title
              }
-           }
         }
     }
     //MARK:- SetUp View

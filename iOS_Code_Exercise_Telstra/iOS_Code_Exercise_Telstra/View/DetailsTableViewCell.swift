@@ -52,8 +52,8 @@ class DetailsTableViewCell:UITableViewCell {
         imageIV.translatesAutoresizingMaskIntoConstraints = false
         imageIV.leadingAnchor.constraint(equalTo:safeArea.leadingAnchor).isActive = true
         imageIV.centerYAnchor.constraint(equalTo:centerYAnchor).isActive = true
-        imageIV.widthAnchor.constraint(equalToConstant:40).isActive = true
-        imageIV.heightAnchor.constraint(equalToConstant:40).isActive = true
+        imageIV.widthAnchor.constraint(equalToConstant:60).isActive = true
+        imageIV.heightAnchor.constraint(equalToConstant:60).isActive = true
     }
     // Show Title on View.
     func setupTitlelbl()
@@ -61,10 +61,10 @@ class DetailsTableViewCell:UITableViewCell {
         let marginGuide = contentView.layoutMarginsGuide
         contentView.addSubview(titlelbl)
         titlelbl.translatesAutoresizingMaskIntoConstraints = false
-        titlelbl.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor,constant: 5).isActive = true
+        titlelbl.leadingAnchor.constraint(equalTo: imageIV.trailingAnchor,constant:10).isActive = true
         titlelbl.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
         titlelbl.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
-        titlelbl.font = UIFont(name:"Verdana-Bold", size:14)
+        titlelbl.font = UIFont(name:"Verdana-Bold", size:12)
         titlelbl.numberOfLines = 0
     }
     // Show Description on View.
