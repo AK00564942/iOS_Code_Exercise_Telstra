@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+var refresh = UIRefreshControl()
 
 let reuserIdetifer = "cellid"
 
@@ -17,11 +18,25 @@ class DetailsViewController: UIViewController{
      var arrDetailsModel = [DetailsViewModel]()
     override func viewDidLoad()
     {
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refresh
+        }
+        else
+        {
+            tableView.addSubview(refresh)
+        }
+        refresh.addTarget(self, action: #selector(refreshData), for:.valueChanged)
        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
        view.backgroundColor = .white
        safeArea = view.layoutMarginsGuide
        setupView()
        fetchDataFromServer()
+    }
+    
+    @objc func refreshData(sender:UIRefreshControl)
+    {
+        fetchDataFromServer()
+        sender.endRefreshing()
     }
     func fetchDataFromServer()
     {
@@ -29,10 +44,10 @@ class DetailsViewController: UIViewController{
         self.arrDetailsModel = data.rows.map({return DetailsViewModel(details: $0)})
         DispatchQueue.main.async {
         self.tableView.reloadData()
-            self.navigationItem.title = data.title
-             }
+        self.navigationItem.title = data.title
         }
     }
+}
     //MARK:- SetUp View
     func setupView() {
         view.addSubview(tableView)
@@ -41,8 +56,9 @@ class DetailsViewController: UIViewController{
     func tableViewSet()
        {
            tableView.dataSource = self
+           tableView.delegate = self
            tableView.estimatedRowHeight = 200
-           tableView.rowHeight = UITableView.automaticDimension
+           //tableView.rowHeight = UITableView.automaticDimension
            tableView.register(DetailsTableViewCell.self, forCellReuseIdentifier:reuserIdetifer)
            tableView.translatesAutoresizingMaskIntoConstraints = false
            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
@@ -52,20 +68,49 @@ class DetailsViewController: UIViewController{
        }
     }
 //MARK:- UITableViewDataSource
-extension DetailsViewController: UITableViewDataSource {
+extension DetailsViewController: UITableViewDataSource,UITableViewDelegate{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return arrDetailsModel.count
+    return 1
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier:reuserIdetifer, for: indexPath)
-    let detailslist = arrDetailsModel[indexPath.row]
-    guard let detailsViewCell = cell as? DetailsTableViewCell else
+    cell.textLabel?.text = arrDetailsModel[indexPath.section].description
+    cell.textLabel?.lineBreakMode = .byWordWrapping
+    cell.textLabel?.numberOfLines = 0
+    cell.sizeToFit()
+    
+    if let imageUrl = arrDetailsModel[indexPath.section].imageHref
     {
-        return cell
+       if let url =  URL(string:imageUrl)
+         {
+        /** call this method for image lazy loading */
+            cell.imageView?.sd_setImage(with: url, placeholderImage:UIImage(contentsOfFile:"placeholder.png"))
+     }
     }
-    detailsViewCell.configureCell(item:detailslist)
+
+    //if arrDetailsModel[indexPath.section].i
+    
     return cell
 }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return arrDetailsModel[section].title
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return arrDetailsModel.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let descrptionLabel = UILabel(frame:CGRect(x:8,y:60,width:200,height:30))
+        descrptionLabel.font = .systemFont(ofSize:12.0)
+        descrptionLabel.lineBreakMode = .byWordWrapping
+        descrptionLabel.numberOfLines = 0
+        descrptionLabel.text = arrDetailsModel[indexPath.section].description
+        descrptionLabel.sizeToFit()
+        
+        var imageHeight = CGFloat(0.0)
+        
+        
+        return descrptionLabel.bounds.height + 6
+    }
 }
 
 
