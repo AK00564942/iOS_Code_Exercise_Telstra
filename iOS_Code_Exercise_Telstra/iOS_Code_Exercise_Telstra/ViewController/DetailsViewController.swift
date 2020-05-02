@@ -10,12 +10,15 @@ import UIKit
 import SDWebImage
 var refresh = UIRefreshControl()
 
+
 let reuserIdetifer = "cellid"
 
 class DetailsViewController: UIViewController{
      let tableView = UITableView()
      var safeArea: UILayoutGuide!
      var arrDetailsModel = [DetailsViewModel]()
+    var isScrolling = false
+    var pendingUpdate = false
     override func viewDidLoad()
     {
         if #available(iOS 10.0, *) {
@@ -30,7 +33,13 @@ class DetailsViewController: UIViewController{
        view.backgroundColor = .white
        safeArea = view.layoutMarginsGuide
        setupView()
-       fetchDataFromServer()
+        if !self.isScrolling
+        {
+            self.fetchDataFromServer()
+        } else
+        {
+            self.pendingUpdate = true
+        }
     }
     
     @objc func refreshData(sender:UIRefreshControl)
@@ -74,10 +83,8 @@ extension DetailsViewController: UITableViewDataSource,UITableViewDelegate{
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier:reuserIdetifer, for: indexPath)
-    cell.textLabel?.text = arrDetailsModel[indexPath.section].description
-    cell.textLabel?.lineBreakMode = .byWordWrapping
-    cell.textLabel?.numberOfLines = 0
-    cell.sizeToFit()
+    cell.imageView?.image = nil
+    
     
     if let imageUrl = arrDetailsModel[indexPath.section].imageHref
     {
@@ -86,6 +93,10 @@ extension DetailsViewController: UITableViewDataSource,UITableViewDelegate{
         /** call this method for image lazy loading */
             cell.imageView?.sd_setImage(with: url, placeholderImage:UIImage(contentsOfFile:"placeholder.png"))
      }
+        cell.textLabel?.text = arrDetailsModel[indexPath.section].description
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        cell.textLabel?.numberOfLines = 0
+        cell.sizeToFit()
     }
 
     //if arrDetailsModel[indexPath.section].i
@@ -108,9 +119,33 @@ extension DetailsViewController: UITableViewDataSource,UITableViewDelegate{
         
         var imageHeight = CGFloat(0.0)
         
+        if arrDetailsModel[indexPath.section].imageHref?.toImage() != nil
+        {
+            imageHeight = (arrDetailsModel[indexPath.section].imageHref?.toImage()?.size.height)! > CGFloat(60.0) ? 60 : (arrDetailsModel[indexPath.section].imageHref?.toImage()?.size.height)!
+        }
+        return imageHeight > CGFloat(descrptionLabel.bounds.height + 6) ? imageHeight : descrptionLabel.bounds.height + 6
         
-        return descrptionLabel.bounds.height + 6
     }
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+          isScrolling = true
+      }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        isScrolling = false
+        if pendingUpdate {
+            fetchDataFromServer()
+            pendingUpdate = false
+        }
+    }
+  
 }
 
 
+
+extension String {
+    func toImage() -> UIImage? {
+        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters){
+            return UIImage(data: data)
+        }
+        return nil
+    }
+}
