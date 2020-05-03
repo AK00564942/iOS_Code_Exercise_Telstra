@@ -7,49 +7,43 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "87B21049-2414-480A-9428-C2C876CED4A0"
-            shouldBeEnabled = "Yes"
+            uuid = "4FA37D51-AA51-49FD-9DDC-AF7AEB9BFE33"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOS_Code_Exercise_Telstra/ViewController/DetailsViewController.swift"
+            filePath = "iOS_Code_Exercise_TelstraTests/iOS_Code_Exercise_Telstra.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "fetchDataFromServer()"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "testValidCallToiTunesGetsHTTPStatusCode200()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6506B663-B1EF-461C-B65E-8159D7301506"
+            uuid = "4F4E409B-385F-4C69-88E1-3AB62C04234D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOS_Code_Exercise_Telstra/ViewController/DetailsViewController.swift"
+            filePath = "iOS_Code_Exercise_TelstraTests/iOS_Code_Exercise_Telstra.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "tableView(_:heightForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "iOS_Code_Exercise_Telstra"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.IDETestFailureBreakpoint">
          <BreakpointContent
-            uuid = "0D1C97BD-1AEE-4AC8-AA5B-BDB0B1B769FC"
+            uuid = "881F5AA0-F61D-438A-A869-6096C42A9AC1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOS_Code_Exercise_Telstra/ViewController/DetailsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "tableView(_:heightForRowAt:)"
-            landmarkType = "7">
+            breakpointStackSelectionBehavior = "1">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

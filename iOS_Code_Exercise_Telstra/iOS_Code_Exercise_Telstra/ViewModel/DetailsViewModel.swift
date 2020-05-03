@@ -8,13 +8,11 @@
 
 import Foundation
 
-    
 class DetailsViewModel
 {
     var title:String?
     var description:String?
     var imageHref:String?
-    
     // Dependency Injection
   init(details:Rows) {
     self.title = details.title

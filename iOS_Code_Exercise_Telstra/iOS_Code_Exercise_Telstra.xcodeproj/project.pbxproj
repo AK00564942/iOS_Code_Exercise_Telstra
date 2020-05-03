@@ -15,11 +15,12 @@
 		EF607AA124586E2B00421A36 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF607AA024586E2B00421A36 /* DetailsTableViewCell.swift */; };
 		EF7F75E2245A921A00FB819E /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F75E1245A921A00FB819E /* DetailsViewModel.swift */; };
 		EF7F75E4245A925A00FB819E /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F75E3245A925A00FB819E /* DetailsModel.swift */; };
-		EFA64B07245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA64B06245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */; };
+		EFA64B10245DFABC00E3BC6B /* DetailsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA64B0F245DFABC00E3BC6B /* DetailsViewController+Extension.swift */; };
+		EFA64B18245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA64B17245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EFA64B09245D938400E3BC6B /* PBXContainerItemProxy */ = {
+		EFA64B1A245E82A400E3BC6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EF4988B72456B6D800491657 /* Project object */;
 			proxyType = 1;
@@ -41,9 +42,10 @@
 		EF607AA024586E2B00421A36 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		EF7F75E1245A921A00FB819E /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		EF7F75E3245A925A00FB819E /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
-		EFA64B04245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_Code_Exercise_TelstraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EFA64B06245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Code_Exercise_TelstraTests.swift; sourceTree = "<group>"; };
-		EFA64B08245D938400E3BC6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFA64B0F245DFABC00E3BC6B /* DetailsViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController+Extension.swift"; sourceTree = "<group>"; };
+		EFA64B15245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_Code_Exercise_TelstraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA64B17245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Code_Exercise_TelstraTests.swift; sourceTree = "<group>"; };
+		EFA64B19245E82A400E3BC6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EFA64B01245D938400E3BC6B /* Frameworks */ = {
+		EFA64B12245E82A400E3BC6B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -102,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				EF4988C12456B6D800491657 /* iOS_Code_Exercise_Telstra */,
-				EFA64B05245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests */,
+				EFA64B16245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests */,
 				EF4988C02456B6D800491657 /* Products */,
 				1E546610B953D456B1EC981A /* Pods */,
 				367BC63E156FF164DEFE2291 /* Frameworks */,
@@ -113,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				EF4988BF2456B6D800491657 /* iOS_Code_Exercise_Telstra.app */,
-				EFA64B04245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.xctest */,
+				EFA64B15245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +123,7 @@
 		EF4988C12456B6D800491657 /* iOS_Code_Exercise_Telstra */ = {
 			isa = PBXGroup;
 			children = (
+				EFA64B0E245DFA8200E3BC6B /* Extension */,
 				EF7F75E0245A91BC00FB819E /* Model */,
 				EF7F75DF245A919C00FB819E /* ViewModel */,
 				EF607A9F24586E0400421A36 /* View */,
@@ -157,11 +160,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EFA64B05245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests */ = {
+		EFA64B0E245DFA8200E3BC6B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				EFA64B06245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */,
-				EFA64B08245D938400E3BC6B /* Info.plist */,
+				EFA64B0F245DFABC00E3BC6B /* DetailsViewController+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		EFA64B16245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests */ = {
+			isa = PBXGroup;
+			children = (
+				EFA64B17245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */,
+				EFA64B19245E82A400E3BC6B /* Info.plist */,
 			);
 			path = iOS_Code_Exercise_TelstraTests;
 			sourceTree = "<group>";
@@ -188,22 +199,22 @@
 			productReference = EF4988BF2456B6D800491657 /* iOS_Code_Exercise_Telstra.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EFA64B03245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests */ = {
+		EFA64B14245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EFA64B0D245D938400E3BC6B /* Build configuration list for PBXNativeTarget "iOS_Code_Exercise_TelstraTests" */;
+			buildConfigurationList = EFA64B1C245E82A400E3BC6B /* Build configuration list for PBXNativeTarget "iOS_Code_Exercise_TelstraTests" */;
 			buildPhases = (
-				EFA64B00245D938400E3BC6B /* Sources */,
-				EFA64B01245D938400E3BC6B /* Frameworks */,
-				EFA64B02245D938400E3BC6B /* Resources */,
+				EFA64B11245E82A400E3BC6B /* Sources */,
+				EFA64B12245E82A400E3BC6B /* Frameworks */,
+				EFA64B13245E82A400E3BC6B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EFA64B0A245D938400E3BC6B /* PBXTargetDependency */,
+				EFA64B1B245E82A400E3BC6B /* PBXTargetDependency */,
 			);
 			name = iOS_Code_Exercise_TelstraTests;
 			productName = iOS_Code_Exercise_TelstraTests;
-			productReference = EFA64B04245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.xctest */;
+			productReference = EFA64B15245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -219,7 +230,7 @@
 					EF4988BE2456B6D800491657 = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
-					EFA64B03245D938400E3BC6B = {
+					EFA64B14245E82A400E3BC6B = {
 						CreatedOnToolsVersion = 11.4.1;
 						TestTargetID = EF4988BE2456B6D800491657;
 					};
@@ -239,7 +250,7 @@
 			projectRoot = "";
 			targets = (
 				EF4988BE2456B6D800491657 /* iOS_Code_Exercise_Telstra */,
-				EFA64B03245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests */,
+				EFA64B14245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests */,
 			);
 		};
 /* End PBXProject section */
@@ -253,7 +264,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EFA64B02245D938400E3BC6B /* Resources */ = {
+		EFA64B13245E82A400E3BC6B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -310,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF0CE68C2457425700A4A03D /* Service.swift in Sources */,
+				EFA64B10245DFABC00E3BC6B /* DetailsViewController+Extension.swift in Sources */,
 				EF607AA124586E2B00421A36 /* DetailsTableViewCell.swift in Sources */,
 				EF4988C72456B6D800491657 /* DetailsViewController.swift in Sources */,
 				EF4988C32456B6D800491657 /* AppDelegate.swift in Sources */,
@@ -318,21 +330,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EFA64B00245D938400E3BC6B /* Sources */ = {
+		EFA64B11245E82A400E3BC6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFA64B07245D938400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift in Sources */,
+				EFA64B18245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EFA64B0A245D938400E3BC6B /* PBXTargetDependency */ = {
+		EFA64B1B245E82A400E3BC6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EF4988BE2456B6D800491657 /* iOS_Code_Exercise_Telstra */;
-			targetProxy = EFA64B09245D938400E3BC6B /* PBXContainerItemProxy */;
+			targetProxy = EFA64B1A245E82A400E3BC6B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -489,7 +501,7 @@
 			};
 			name = Release;
 		};
-		EFA64B0B245D938400E3BC6B /* Debug */ = {
+		EFA64B1D245E82A400E3BC6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,7 +520,7 @@
 			};
 			name = Debug;
 		};
-		EFA64B0C245D938400E3BC6B /* Release */ = {
+		EFA64B1E245E82A400E3BC6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -548,11 +560,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EFA64B0D245D938400E3BC6B /* Build configuration list for PBXNativeTarget "iOS_Code_Exercise_TelstraTests" */ = {
+		EFA64B1C245E82A400E3BC6B /* Build configuration list for PBXNativeTarget "iOS_Code_Exercise_TelstraTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EFA64B0B245D938400E3BC6B /* Debug */,
-				EFA64B0C245D938400E3BC6B /* Release */,
+				EFA64B1D245E82A400E3BC6B /* Debug */,
+				EFA64B1E245E82A400E3BC6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

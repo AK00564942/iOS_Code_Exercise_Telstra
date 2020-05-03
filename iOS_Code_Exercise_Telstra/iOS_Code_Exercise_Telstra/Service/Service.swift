@@ -10,11 +10,9 @@ import Foundation
 
 /** fetch URL */
 fileprivate let kDataUrl = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
-
 final class Service
 {
     static let shared = Service()
-    
     /** Call this function to fetch data from server */
     func fetchDescAPI(completion: @escaping (List) -> Void) {
     let session = URLSession.shared
