@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import iOS_Code_Exercise_Telstra
+//import Service
+//@testable import iOS_Code_Exercise_Telstra
 
 
 class iOS_Code_Exercise_TelstraTests: XCTestCase {
@@ -15,6 +16,7 @@ class iOS_Code_Exercise_TelstraTests: XCTestCase {
    override func setUp() {
      super.setUp()
      dut = URLSession(configuration: .default)
+    
    }
    
    override func tearDown() {
@@ -23,29 +25,16 @@ class iOS_Code_Exercise_TelstraTests: XCTestCase {
    }
     // Asynchronous test: success fast, failure slow
     func testValidCallTofetchDescAPIHTTPStatusCode200() {
-      // given
-      let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")
-      // 1
-      let promise = expectation(description: "Status code: 200")
-      
-      // when
-      let dataTask = dut.dataTask(with: url!) { data, response, error in
-        // then
-        if let error = error {
-          XCTFail("Error: \(error.localizedDescription)")
-          return
-        } else if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-          if statusCode == 200 {
-            // 2
-            promise.fulfill()
-          } else {
-            XCTFail("Status code: \(statusCode)")
-          }
+        Service.shared.fetchDescAPI { (response) in
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+              if statusCode == 200 {
+                // 2
+                promise.fulfill()
+              } else {
+                XCTFail("Status code: \(statusCode)")
+              }
+            }
         }
-      }
-      dataTask.resume()
-      // 3
-      wait(for: [promise], timeout: 5)
     }
     
     // Asynchronous test: faster fail

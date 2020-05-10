@@ -7,72 +7,128 @@
 //
 
 import UIKit
-import SDWebImage
 
-var refresh = UIRefreshControl()
-let reuserIdetifer = "cell"
-class DetailsViewController: UIViewController, UITableViewDelegate{
-     let tableView = UITableView()
-     var safeArea: UILayoutGuide!
-     var arrDetailsModel = [DetailsViewModel]()
-     var isScrolling = false
-     var pendingUpdate = false
-    override func viewDidLoad()
+
+class DetailsViewController: UIViewController{
+   
+    private var viewModel : DetailsViewModel!
+    private var refreshControl = UIRefreshControl()
+    
+    let indicator:UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(frame: CGRect(x:0, y:0, width:60, height:60))
+        indicator.style = .gray
+        return indicator
+       }()
+    
+    let tableView:UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.tableFooterView = UIView(frame: .zero)
+        return tableView
+    }()
+     
+    init(viewModel: DetailsViewModel)
     {
-       refreshAction()
-       safeArea = view.layoutMarginsGuide
-       setupView()
-        if !self.isScrolling
-        {
-            self.fetchDataFromServer()
-        } else
-        {
-            self.pendingUpdate = true
-        }
+      super.init(nibName: nil, bundle: nil)
+      self.viewModel = viewModel
+      self.viewModel.delegate = self
     }
-    @objc func refreshData(sender:UIRefreshControl)
+    
+    required init?(coder: NSCoder)
     {
-        fetchDataFromServer()
+       fatalError("init(coder:) has not been implemented")
+    }
+    
+     override func viewDidLoad()
+      {
+        setupView()
+      }
+     @objc func refreshData(sender:UIRefreshControl)
+     {
         sender.endRefreshing()
-    }
-    func fetchDataFromServer()
-    {
-       Service.shared.fetchDescAPI { (data) in
-       self.arrDetailsModel = data.rows.map({return DetailsViewModel(details: $0)})
-       DispatchQueue.main.async {
-       self.tableView.reloadData()
-       self.navigationItem.title = data.title
-        }
       }
-    }
-    func refreshAction()
-    {
-        if #available(iOS 10.0, *)
-            {
-            tableView.refreshControl = refresh
-            }
-        else
-            {
-             tableView.addSubview(refresh)
-            }
-        refresh.addTarget(self, action: #selector(refreshData), for:.valueChanged)
-    }
     //MARK:- SetUp View
-    func setupView() {
+    func setupView()
+     {
+        view.backgroundColor = UIColor.white
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(DetailsTableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.allowsSelection = false
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableView.automaticDimension
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(DetailsViewController.refresh(sender:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        setupLayout()
+        setLayoutConstraints()
+        // Load content
+        self.viewModel.getDataFromServer()
+     }
+    
+    @objc func refresh(sender:AnyObject)
+    {
+        self.viewModel.getDataFromServer()
+    }   
+    
+    func setupLayout(){
+        tableView.frame = view.bounds
         view.addSubview(tableView)
-        tableViewSet()
-      }
-    func tableViewSet()
-       {
-           tableView.dataSource = self
-           tableView.delegate = self
-           tableView.estimatedRowHeight = 600
-           tableView.rowHeight = UITableView.automaticDimension
-           tableView.register(DetailsTableViewCell.self, forCellReuseIdentifier:reuserIdetifer)
-           tableView.translatesAutoresizingMaskIntoConstraints = false
-           tableView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-           tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-           tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-           tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-       }
+
+        indicator.center = self.tableView.center
+        self.view.addSubview(indicator)
+    }
+    
+    func setLayoutConstraints()
+    {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+     }
+   }
+extension DetailsViewController:UITableViewDelegate, UITableViewDataSource {
+   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return viewModel.items.count
+        }
+        
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 100.0
+        }
+        
+        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+            return UITableView.automaticDimension
+        }
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? DetailsTableViewCell
+            let item = viewModel.items[indexPath.row]
+            cell?.detailsTitle.text = item.title
+            cell?.detailsDesc.text = item.description
+            cell?.detailImg.image = UIImage(named: "placeholder.png")
+            if let imagePath = item.imageHref
+            {
+                //Lazy Loading
+                viewModel.obtainImageWithPath(imagePath: imagePath) { image in
+                    if let imageReceived = image, let updateCell = tableView.cellForRow(at: indexPath) as? DetailsTableViewCell {
+                         DispatchQueue.main.async {
+                         updateCell.detailImg.image = imageReceived
+                        }
+                        
+                    }
+                }
+            }
+            return cell!
+        }
+    }
+    extension DetailsViewController: DetailsViewModelDelegate{
+        func serverDataUpdated() {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+                self?.navigationItem.title = self?.viewModel.title
+                self?.indicator.stopAnimating()
+                self?.indicator.hidesWhenStopped = true
+                self?.refreshControl.endRefreshing()
+            }
+        }
     }

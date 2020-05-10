@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E80925865FE027991892530 /* Pods_iOS_Code_Exercise_Telstra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC82F7F61AC7FFF29BA4898B /* Pods_iOS_Code_Exercise_Telstra.framework */; };
+		EF014B71246694EF0049069A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CE68B2457425700A4A03D /* Service.swift */; };
 		EF0CE68C2457425700A4A03D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CE68B2457425700A4A03D /* Service.swift */; };
 		EF4988C32456B6D800491657 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4988C22456B6D800491657 /* AppDelegate.swift */; };
 		EF4988C72456B6D800491657 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4988C62456B6D800491657 /* DetailsViewController.swift */; };
@@ -15,7 +16,6 @@
 		EF607AA124586E2B00421A36 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF607AA024586E2B00421A36 /* DetailsTableViewCell.swift */; };
 		EF7F75E2245A921A00FB819E /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F75E1245A921A00FB819E /* DetailsViewModel.swift */; };
 		EF7F75E4245A925A00FB819E /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7F75E3245A925A00FB819E /* DetailsModel.swift */; };
-		EFA64B10245DFABC00E3BC6B /* DetailsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA64B0F245DFABC00E3BC6B /* DetailsViewController+Extension.swift */; };
 		EFA64B18245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA64B17245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,6 @@
 		EF607AA024586E2B00421A36 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		EF7F75E1245A921A00FB819E /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		EF7F75E3245A925A00FB819E /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
-		EFA64B0F245DFABC00E3BC6B /* DetailsViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController+Extension.swift"; sourceTree = "<group>"; };
 		EFA64B15245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_Code_Exercise_TelstraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFA64B17245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Code_Exercise_TelstraTests.swift; sourceTree = "<group>"; };
 		EFA64B19245E82A400E3BC6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,7 +122,6 @@
 		EF4988C12456B6D800491657 /* iOS_Code_Exercise_Telstra */ = {
 			isa = PBXGroup;
 			children = (
-				EFA64B0E245DFA8200E3BC6B /* Extension */,
 				EF7F75E0245A91BC00FB819E /* Model */,
 				EF7F75DF245A919C00FB819E /* ViewModel */,
 				EF607A9F24586E0400421A36 /* View */,
@@ -158,14 +156,6 @@
 				EF7F75E3245A925A00FB819E /* DetailsModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		EFA64B0E245DFA8200E3BC6B /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				EFA64B0F245DFABC00E3BC6B /* DetailsViewController+Extension.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		EFA64B16245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests */ = {
@@ -321,7 +311,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF0CE68C2457425700A4A03D /* Service.swift in Sources */,
-				EFA64B10245DFABC00E3BC6B /* DetailsViewController+Extension.swift in Sources */,
 				EF607AA124586E2B00421A36 /* DetailsTableViewCell.swift in Sources */,
 				EF4988C72456B6D800491657 /* DetailsViewController.swift in Sources */,
 				EF4988C32456B6D800491657 /* AppDelegate.swift in Sources */,
@@ -335,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFA64B18245E82A400E3BC6B /* iOS_Code_Exercise_TelstraTests.swift in Sources */,
+				EF014B71246694EF0049069A /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +460,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOS_Code_Exercise_Telstra/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = iOS_Code_Exercise_Telstra/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
