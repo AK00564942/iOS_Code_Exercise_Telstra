@@ -17,61 +17,28 @@ final class Service {
     
     static public let shared: Service = Service()
     
-    func fetchDataForServer( completionHandler: @escaping (List?) -> Void) {
+    func getFacts(completion: @escaping (List?, Error?) -> Void) {
         let urlString = baseURLString + append
-        guard let url = URL(string: urlString) else { return }
+        let session = URLSession.shared
+        guard let url = URL(string:urlString)
+            else { fatalError() }
         
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        
-        dataTask?.cancel()
-        dataTask = defaultSession.dataTask(with: urlRequest.url!) { data, response, error in
-            var dataReceived:List?
-            
-            defer {
-                self.dataTask = nil
-                completionHandler(dataReceived)
-            }
-            
-            if let error = error {
-                print("[API] Request failed with error: \(error.localizedDescription)")
+        session.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                completion(nil, error)
                 return
             }
-            
-            guard let data = data, let response = response as? HTTPURLResponse else {
-                print("[API] equest returned an invalid response")
-                return
-            }
-            
-            guard response.statusCode == 200 else {
-                print("[API] Request returned an unsupported status code: \(response.statusCode)")
-                return
-            }
+            guard let data = data else { return }
             
             let responseStrInISOLatin = String(data: data, encoding: String.Encoding.isoLatin1)
             guard let modifiedDataInUTF8Format = responseStrInISOLatin?.data(using: String.Encoding.utf8) else {
                 print("could not convert data to UTF-8 format")
                 return
             }
-            do {
-                let decoder = JSONDecoder()
-                let model = try decoder.decode(List.self, from: modifiedDataInUTF8Format)
-                dataReceived = model
-            } catch {
-                print("[API] Decoding failed with error: \(error)")
-            }
-        }
-        dataTask?.resume()
-    }
-    
-    func obtainImageDataWithPath(imagePath: String, completionHandler: @escaping (Data?) -> Void) {
-            let url: URL! = URL(string: imagePath)
-        let task = defaultSession.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            completionHandler(data)
-        }
-        task.resume()
+            let movies = try! JSONDecoder().decode(List.self, from:modifiedDataInUTF8Format)
+            completion(movies, nil)
+        }.resume()
     }
 }
 
-  
+

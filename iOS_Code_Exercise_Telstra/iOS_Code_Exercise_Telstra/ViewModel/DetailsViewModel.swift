@@ -26,8 +26,8 @@ final class DetailsViewModel {
     
     func getDataFromServer() {
         DispatchQueue.main.async {
-            Service.shared.fetchDataForServer{ (data) in
-                guard let dataReceived = data, let title = data?.title else {
+            Service.shared.getFacts { (list,error) in
+                guard let dataReceived = list, let title = list?.title else {
                     // do nothing
                     return
                 }
@@ -36,4 +36,4 @@ final class DetailsViewModel {
             }
         }
     }
-   }
+}

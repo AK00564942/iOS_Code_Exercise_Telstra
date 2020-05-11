@@ -32,7 +32,7 @@
             skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFA64B14245E82A400E3BC6B"
+               BlueprintIdentifier = "EF366ECA246959C90064D44E"
                BuildableName = "iOS_Code_Exercise_TelstraTests.xctest"
                BlueprintName = "iOS_Code_Exercise_TelstraTests"
                ReferencedContainer = "container:iOS_Code_Exercise_Telstra.xcodeproj">
@@ -45,6 +45,16 @@
                BlueprintIdentifier = "EF46D75124692E9100464D99"
                BuildableName = "iOS_Code_UnitTest_Telstra.xctest"
                BlueprintName = "iOS_Code_UnitTest_Telstra"
+               ReferencedContainer = "container:iOS_Code_Exercise_Telstra.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EF366ED824695A640064D44E"
+               BuildableName = "iOS_Code_Exercise_Telstra_Test.xctest"
+               BlueprintName = "iOS_Code_Exercise_Telstra_Test"
                ReferencedContainer = "container:iOS_Code_Exercise_Telstra.xcodeproj">
             </BuildableReference>
          </TestableReference>
