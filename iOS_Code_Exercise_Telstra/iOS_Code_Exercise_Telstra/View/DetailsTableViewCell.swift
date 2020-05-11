@@ -95,7 +95,10 @@ class DetailsTableViewCell:UITableViewCell {
         if let imagePath = detailViewData.imageHref
         {
             //Lazy Loading Implementation
-            detailImg.sd_setImage(with: URL(string:imagePath), placeholderImage: UIImage(named: "placeholder.png"))
+            DispatchQueue.global(qos: .background).async {
+                self.detailImg.sd_setImage(with: URL(string:imagePath), placeholderImage: UIImage(named: "placeholder.png"))
+            }
+           
         }
     }
 }
