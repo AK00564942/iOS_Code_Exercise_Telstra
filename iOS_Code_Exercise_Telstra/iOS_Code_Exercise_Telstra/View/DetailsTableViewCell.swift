@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailsTableViewCell:UITableViewCell {
     
-   
-  
     let detailImg:UIImageView = {
             let detailImg = UIImageView()
         // image will never be strecthed vertially or horizontally
@@ -49,7 +48,6 @@ class DetailsTableViewCell:UITableViewCell {
             return view
         }()
     
-        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
@@ -89,6 +87,16 @@ class DetailsTableViewCell:UITableViewCell {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-
-}
+        func configure(detailViewData:Rows)
+        {
+            detailImg.image = nil
+            detailsTitle.text = detailViewData.title
+            detailsDesc.text = detailViewData.description
+            if let imagePath = detailViewData.imageHref
+            {
+                //Lazy Loading Implementation
+                detailImg.sd_setImage(with: URL(string:imagePath), placeholderImage: UIImage(named: "placeholder.png"))
+            }
+        }
+     }
 

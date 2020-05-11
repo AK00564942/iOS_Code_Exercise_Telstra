@@ -11,7 +11,7 @@ import UIKit
 
 class DetailsViewController: UIViewController{
    
-    private var viewModel : DetailsViewModel!
+    var viewModel : DetailsViewModel!
     private var refreshControl = UIRefreshControl()
     
     let indicator:UIActivityIndicatorView = {
@@ -79,7 +79,7 @@ class DetailsViewController: UIViewController{
     }
     
     func setLayoutConstraints()
-    {
+     {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -87,48 +87,37 @@ class DetailsViewController: UIViewController{
         tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
      }
    }
+
 extension DetailsViewController:UITableViewDelegate, UITableViewDataSource {
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return viewModel.items.count
-        }
-        
+    
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                return viewModel.items.count
+            }
+            
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 100.0
         }
-        
+            
         func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
             return UITableView.automaticDimension
         }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? DetailsTableViewCell
             let item = viewModel.items[indexPath.row]
-            cell?.detailsTitle.text = item.title
-            cell?.detailsDesc.text = item.description
-            cell?.detailImg.image = UIImage(named: "placeholder.png")
-            if let imagePath = item.imageHref
-            {
-                //Lazy Loading
-                viewModel.obtainImageWithPath(imagePath: imagePath) { image in
-                    if let imageReceived = image, let updateCell = tableView.cellForRow(at: indexPath) as? DetailsTableViewCell {
-                         DispatchQueue.main.async {
-                         updateCell.detailImg.image = imageReceived
-                        }
-                        
-                    }
-                }
-            }
+            cell?.configure(detailViewData:item)
             return cell!
         }
-    }
-    extension DetailsViewController: DetailsViewModelDelegate{
+}
+
+extension DetailsViewController: DetailsViewModelDelegate {
         func serverDataUpdated() {
             DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-                self?.navigationItem.title = self?.viewModel.title
-                self?.indicator.stopAnimating()
-                self?.indicator.hidesWhenStopped = true
-                self?.refreshControl.endRefreshing()
-            }
-        }
-    }
+            self?.tableView.reloadData()
+            self?.navigationItem.title = self?.viewModel.title
+            self?.indicator.stopAnimating()
+            self?.indicator.hidesWhenStopped = true
+            self?.refreshControl.endRefreshing()
+          }
+      }
+   }

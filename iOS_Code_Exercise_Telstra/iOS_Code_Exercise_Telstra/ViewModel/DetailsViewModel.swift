@@ -36,25 +36,4 @@ final class DetailsViewModel {
             }
         }
     }
-    
-    func obtainImageWithPath(imagePath: String, completionHandler: @escaping (UIImage?) -> Void)
-    {
-        if let image = self.cache.object(forKey: imagePath as NSString) {
-            DispatchQueue.main.async {
-                completionHandler(image)
-            }
-        } else {
-            Service.shared.obtainImageDataWithPath(imagePath: imagePath, completionHandler: {(data) in
-                guard let imageData = data else {
-                    return
-                }
-                if let image = UIImage(data: imageData) {
-                    self.cache.setObject(image, forKey: imagePath as NSString)
-                    DispatchQueue.main.async {
-                        completionHandler(image)
-                    }
-                }
-            })
-        }
-      }
    }
